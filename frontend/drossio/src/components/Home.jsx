@@ -1,32 +1,37 @@
-
+import { NavLink } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
+import { useState } from 'react'
 function Home() {
 
 
-	function onClicked() {
-		console.log('Hello');
-	}
+	const navigate = useNavigate();
 
-	function onSubmitted(e) {
+	function onClicked(e) {
+		console.log('Hello');
+
 		e.preventDefault();
 		let form = e.target
 		let formData = new FormData(form)
+
 		let data = Object.fromEntries(formData.entries());
-		console.log(data.name)
+		navigate('/game', { state: data })
 	}
 
-	return(
-	<div className="home">
-		<h1>Enter a name to join the game</h1>
+
+
+	return (
+		<div className="home" onSubmit={onClicked}>
+			<h1>Enter a name to join the game</h1>
 			<div>
-				<form method="post" onSubmit={onSubmitted}>
-				<input type="text" name="name" placeholder="Enter your cool gaming name"/>
-				<button type="submit">Go to the game</button>
+				<form method="post">
+					<input type="text" name="name" placeholder="Enter your cool gaming name" />
+					<button type="submit">Go to the game</button>
 				</form>
 			</div>
-	</div>
-	) 
+		</div>
+	)
 
-	
+
 }
 
 export default Home;
