@@ -21,11 +21,7 @@ function Game(props) {
 	const [arr, setArr] = useState([1])
 
 	const adder = () => {
-		const temp = arr
-		temp.push(arr[arr.length - 1] + 1)
-		console.log(arr)
-		setArr(temp)
-		// setArr([...arr, arr[arr.length - 1] + 1])
+		setArr([...arr, arr[arr.length - 1] + 1])
 	}
 
 	const location = useLocation();
