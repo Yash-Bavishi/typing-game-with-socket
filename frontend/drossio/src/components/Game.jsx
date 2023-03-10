@@ -20,26 +20,35 @@ function Game(props) {
 
 	const [arr, setArr] = useState([1])
 
+	const adder = () => {
+		const temp = arr
+		temp.push(arr[arr.length - 1] + 1)
+		console.log(arr)
+		setArr(temp)
+		// setArr([...arr, arr[arr.length - 1] + 1])
+	}
+
 	const location = useLocation();
 	const { state } = location
 	console.log(state)
 	return (
 		<div>
 			{text ?
-			<div className="Game">
-				<center><h1>{text.words[Math.floor(Math.random() * text.words.length)]}</h1></center>
-				<Link to={`/`}>Go back from here for now pwease</Link>
-			</div>
-			:
-			<div className="Game">
-				<center><h1>Game must come here</h1></center>
-				<Link to={`/`}>Go back from here for now pwease</Link>
-			</div> }
+				<div className="Game">
+					<center><h1>{text.words[Math.floor(Math.random() * text.words.length)]}</h1></center>
+					<Link to={`/`}>Go back from here for now pwease</Link>
+				</div>
+				:
+				<div className="Game">
+					<center><h1>Game must come here</h1></center>
+					<Link to={`/`}>Go back from here for now pwease</Link>
+				</div>}
 
-		{arr.map((keys, items) => <h1>{keys}</h1>)}
+			{arr.map((items, i) => (<h1>{items}</h1>))}
 
+			<button onClick={adder}>Click</button>
 
-	</div>
+		</div>
 	)
 }
 
