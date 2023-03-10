@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { useLocation } from 'react-router-dom'
 import { useEffect, useState } from 'react'
+import Chat from './Chat'
 function Game(props) {
 
 	const [text, setText] = useState(null)
@@ -18,11 +19,6 @@ function Game(props) {
 
 
 
-	const [arr, setArr] = useState([1])
-
-	const adder = () => {
-		setArr([...arr, arr[arr.length - 1] + 1])
-	}
 
 	const location = useLocation();
 	const { state } = location
@@ -40,9 +36,7 @@ function Game(props) {
 					<Link to={`/`}>Go back from here for now pwease</Link>
 				</div>}
 
-			{arr.map((items, i) => (<h1>{items}</h1>))}
-
-			<button onClick={adder}>Click</button>
+		<Chat />
 
 		</div>
 	)
