@@ -1,8 +1,14 @@
 import React from 'react'
 import { useState, useRef } from 'react'
+import io from 'socket.io-client'
 
+const socket = io('http://localhost:5000/')
 
 function Chat() {
+
+	socket.on('connect', () => {
+		console.log('Hello there')
+	})
 
 	const text = useRef(null)
 
