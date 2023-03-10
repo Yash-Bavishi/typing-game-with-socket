@@ -1,0 +1,13 @@
+{
+  "name": "drossio",
+  "version": "1.0.0",
+  "description": "A multiplayer typing game using sockets",
+  "main": "index.js",
+  "scripts": {
+		"start": "node ./backend/server.js && cd ./frontend/drossio && npm run start"
+
+  },
+  "author": "constryo",
+  "license": "MIT"
+}
+

@@ -3,7 +3,7 @@ const app = express()
 const router = express.Router();
 
 router.get('/game', (req, res) => {
-	res.send('<h1>Indevelopment</h1>')
+	res.redirect('http://localhost:3000/game')
 })
 
 module.exports = router

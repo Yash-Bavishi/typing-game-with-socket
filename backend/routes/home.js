@@ -3,7 +3,7 @@ const app = express()
 const router = express.Router();
 
 router.get('/', (req, res) => {
-	res.send('<h1>Temporarily unavailable');
+	res.redirect('http://localhost:3000/');
 })
 
 module.exports = router 
