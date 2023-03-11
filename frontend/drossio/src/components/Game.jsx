@@ -2,21 +2,10 @@ import { Link } from 'react-router-dom'
 import { useLocation } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import Chat from './Chat'
-import io from 'socket.io-client'
-
-//const socket = io("http://localhost:5000", {path: "/game"})
 
 
 function Game(props) {
 
-	//	io.connect('http://localhost:5000/')
-
-	const socket = io.connect('http://localhost:5000/game')
-	/*
-		socket.on('connect', () => {
-			console.log('Hello there')
-		})
-	*/
 	const [text, setText] = useState(null)
 
 	useEffect(() => {
