@@ -23,29 +23,22 @@ app.use('/', home)
 app.use('/', game)
 app.use('/', data)
 
-/*
-io.of('/game').on('connection', () => {
-	console.log('Oye')
+/* REFERENCE
+io.of('/chat').on('connection', (socket) => {
+	socket.emit('chat', 'Hello there')
+	socket.on('test', (msg) => {
+		socket.broadcast.emit('reply', msg)
+	})
 })
 */
 
 io.of('/chat').on('connection', (socket) => {
-	console.log('user connected')
-	socket.on('chat', (msg) => {
-		socket.emit('chat', (msg))
+	socket.on('text', (msg) => {
+		console.log(msg)
+		socket.broadcast.emit('recv', msg)
 	})
 })
 
-
-
-/*io.of('/chat').on('connection', (socket) => {
-	console.log('something')
-	socket.on('chat', (msg) => {
-		console.log("look", msg)
-		socket.emit('chat', 'tester')
-	})
-})
-*/
 server.listen(5000, () => {
 	console.log('Hello')
 })
