@@ -19,8 +19,9 @@ function Chat() {
 	})
 	*/
 
-	socket.on('recv', (msg) => {
-		console.log('message received is ', msg)
+	socket.on('recv', (msg2) => {
+		console.log('message received is ', msg2)
+		setMsg([...msg, msg2])
 	})
 
 	const text = useRef(null)
@@ -39,7 +40,7 @@ function Chat() {
 
 	function sendMessage(e) {
 		e.preventDefault()
-		setMsg([...msg, text.current.value])
+		//setMsg([...msg, text.current.value])
 		socket.emit('text', text.current.value)
 		console.log('message sent from here')
 	}
