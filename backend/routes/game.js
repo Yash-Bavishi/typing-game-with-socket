@@ -9,10 +9,5 @@ router.get('/game', (req, res) => {
 })
 
 
-const ioServer = (io) => {
-	io.on('connection', () => {
-		console.log('Sayonara')
-	})
-}
 
-module.exports = ioServer
+module.exports = router
