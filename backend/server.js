@@ -16,12 +16,13 @@ const game = require('./routes/game')
 const data = require('./routes/data')
 const cors = require('cors')
 
+console.log(data.randomizer())
 
 app.use(cors())
 
 app.use('/', home)
 app.use('/', game)
-app.use('/', data)
+app.use('/', data.router)
 
 /* REFERENCE
 io.of('/chat').on('connection', (socket) => {
@@ -31,6 +32,22 @@ io.of('/chat').on('connection', (socket) => {
 	})
 })
 */
+
+
+let gamer = data.randomizer()
+
+function gamerer() {
+
+	gamer = data.randomizer()
+	return gamer
+}
+
+io.of('/game').on('connection', (socket) => {
+	socket.on('change', (msg) => {
+		socket.broadcast.emit('setGamer', gamerer())
+	})
+	socket.broadcast.emit('setGamer', gamer)
+})
 
 io.of('/chat').on('connection', (socket) => {
 	socket.on('text', (msg) => {
