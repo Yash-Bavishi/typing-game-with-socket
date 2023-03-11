@@ -2,7 +2,7 @@ import React from 'react'
 import { useState, useRef } from 'react'
 import io from 'socket.io-client'
 
-const socket = io('http://localhost:5000/')
+const socket = io('http://localhost:5000/chat')
 
 function Chat() {
 
@@ -27,7 +27,16 @@ function Chat() {
 	function sendMessage(e) {
 		e.preventDefault()
 		setMsg([...msg, text.current.value])
+		socket.emit('chat', msg[msg.length - 1])
 	}
+
+	socket.on('chat', (msg2) => {
+		console.log("dekh", msg2)
+		setMsg([...msg, msg2])
+		console.log('here', msg2)
+		console.log('love')
+	})
+
 
 	return (
 		<div className="chat">
