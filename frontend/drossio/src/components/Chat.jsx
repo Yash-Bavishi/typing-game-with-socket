@@ -4,10 +4,10 @@ import io from 'socket.io-client'
 function Chat({ sock }) {
 	console.log("Name is ", sock.sock)
 	const [isSockConnected, setIsSockConnected] = useState(false)
-
+	const socket = sock.sock
 	//const socket = io('http://localhost:5000/chat')
 
-	/* Reference 
+	/* Reference */
 	socket.on('chat', (msg) => {
 		console.log('socket connection established boss')
 		socket.emit('test', 'message from client boss')
@@ -17,14 +17,14 @@ function Chat({ sock }) {
 		console.log('called')
 		console.log(msg)
 	})
-	
+
+
 
 	socket.on('recv', (msg2) => {
 		socket.connect()
 		console.log('message received is ', msg2)
 		setMsg([...msg, msg2])
 	})
-	*/
 	const text = useRef(null)
 
 	const [arr, setArr] = useState([1])
@@ -41,8 +41,9 @@ function Chat({ sock }) {
 
 	function sendMessage(e) {
 		e.preventDefault()
-		//setMsg([...msg, text.current.value])
-		/*	socket.emit('text', text.current.value) */
+		setMsg([...msg, text.current.value])
+		socket.connect()
+		socket.emit('text', text.current.value)
 		console.log('message sent from here')
 	}
 

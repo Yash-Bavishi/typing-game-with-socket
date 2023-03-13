@@ -69,7 +69,9 @@ io.of('/game').on('connection', (socket) => {
 		//socket.emit('setup', gamerer())
 		io.of('/game').emit('setup', gamerer())
 	})
-	console.log(socket.listeners('ready'))
+	socket.on('text', (msg) => {
+		socket.broadcast.emit('recv', msg)
+	})
 })
 
 server.listen(5000, () => {
