@@ -1,8 +1,8 @@
 import React from 'react'
 import { useEffect, useState, useRef } from 'react'
 import io from 'socket.io-client'
-function Chat() {
-
+function Chat({ sock }) {
+	console.log("Name is ", sock.sock)
 	const [isSockConnected, setIsSockConnected] = useState(false)
 
 	//const socket = io('http://localhost:5000/chat')
