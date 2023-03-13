@@ -43,6 +43,7 @@ function gamerer() {
 }
 
 io.of('/game').on('connection', (socket) => {
+	console.log(socket.id)
 	socket.on('change', (msg) => {
 		socket.broadcast.emit('setGamer', gamerer())
 	})
