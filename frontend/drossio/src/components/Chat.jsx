@@ -5,7 +5,7 @@ function Chat() {
 
 	const [isSockConnected, setIsSockConnected] = useState(false)
 
-	const socket = io('http://localhost:5000/chat')
+	//const socket = io('http://localhost:5000/chat')
 
 	/* Reference 
 	socket.on('chat', (msg) => {
@@ -17,13 +17,14 @@ function Chat() {
 		console.log('called')
 		console.log(msg)
 	})
-	*/
+	
 
 	socket.on('recv', (msg2) => {
+		socket.connect()
 		console.log('message received is ', msg2)
 		setMsg([...msg, msg2])
 	})
-
+	*/
 	const text = useRef(null)
 
 	const [arr, setArr] = useState([1])
@@ -41,7 +42,7 @@ function Chat() {
 	function sendMessage(e) {
 		e.preventDefault()
 		//setMsg([...msg, text.current.value])
-		socket.emit('text', text.current.value)
+		/*	socket.emit('text', text.current.value) */
 		console.log('message sent from here')
 	}
 

@@ -43,7 +43,7 @@ function gamerer() {
 }
 
 io.of('/game').on('connection', (socket) => {
-	console.log(socket.id)
+	console.log("YEH WALA", socket.id)
 	socket.on('change', (msg) => {
 		socket.broadcast.emit('setGamer', gamerer())
 	})
@@ -51,6 +51,7 @@ io.of('/game').on('connection', (socket) => {
 })
 
 io.of('/chat').on('connection', (socket) => {
+	console.log("YEH DEKH", socket.id)
 	socket.on('text', (msg) => {
 		console.log(msg)
 		socket.broadcast.emit('recv', msg)

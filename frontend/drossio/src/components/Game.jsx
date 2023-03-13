@@ -6,7 +6,7 @@ import io from 'socket.io-client'
 
 function Game(props) {
 
-	const socket = io('http://localhost:5000/game')
+//	 const socket = io('http://localhost:5000/game', {forceNew: false})
 
 	const [text, setText] = useState(null)
 
@@ -25,13 +25,10 @@ function Game(props) {
 	}, [])
 	*/
 
+	/*
 	useEffect(() => {
 		function connect() {
 			socket.connect()
-			socket.on('setGamer', (msg) => {
-				console.log('Welcome gamer', msg)
-				setText(msg)
-			})
 		}
 
 		connect()
@@ -42,12 +39,16 @@ function Game(props) {
 
 	})
 
-
+		socket.on('setGamer', (msg) => {
+			console.log('Welcome gamer', msg)
+			setText(msg)
+		})
+	*/
 	const reload = () => {
-		socket.emit('change', 'change game')
+//		socket.emit('change', 'change game')
 		setReSock(true)
 	}
-
+	
 	const location = useLocation();
 	const { state } = location
 	console.log(state)
