@@ -10,6 +10,8 @@ function Game(props) {
 
 	const [text, setText] = useState(null)
 
+	const [isSock, setIsSock] = useState(false)
+	const [reSocket, setReSock] = useState(false)
 	/*
 	useEffect(() => {
 		let fetchData = async () => {
@@ -23,13 +25,27 @@ function Game(props) {
 	}, [])
 	*/
 
-	socket.on('setGamer', (msg) => {
-		console.log('Welcome gamer', msg)
-		setText(msg)
+	useEffect(() => {
+		function connect() {
+			socket.connect()
+			socket.on('setGamer', (msg) => {
+				console.log('Welcome gamer', msg)
+				setText(msg)
+			})
+		}
+
+		connect()
+		return () => {
+			socket.disconnect()
+			setReSock(false)
+		}
+
 	})
+
 
 	const reload = () => {
 		socket.emit('change', 'change game')
+		setReSock(true)
 	}
 
 	const location = useLocation();
