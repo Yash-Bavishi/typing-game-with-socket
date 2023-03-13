@@ -41,7 +41,7 @@ function gamerer() {
 	gamer = data.randomizer()
 	return gamer
 }
-
+/*
 io.of('/game').on('connection', (socket) => {
 	console.log("YEH WALA", socket.id)
 	socket.on('change', (msg) => {
@@ -49,13 +49,27 @@ io.of('/game').on('connection', (socket) => {
 	})
 	socket.broadcast.emit('setGamer', gamer)
 })
-
+*/
+/*
 io.of('/chat').on('connection', (socket) => {
 	console.log("YEH DEKH", socket.id)
 	socket.on('text', (msg) => {
 		console.log(msg)
 		socket.broadcast.emit('recv', msg)
 	})
+})
+*/
+
+// let sad = gamerer()
+
+io.of('/game').on('connection', (socket) => {
+	console.log('socket-id', socket.id)
+	socket.on('ready', () => {
+		console.log('hola')
+		//socket.emit('setup', gamerer())
+		io.of('/game').emit('setup', gamerer())
+	})
+	console.log(socket.listeners('ready'))
 })
 
 server.listen(5000, () => {
