@@ -31,6 +31,11 @@ Hello my name is Yash Bavishi 👋. I made this game for learning about [socket.
 
 - [ ]  Take user input in real time and validate answer and send who sent first (`backend`)
 
+# Current problems 
+
+- [ ] Multiple socket connection established from client side this behaviour leads to false requests which leads to denial of service for user
+		![[Pasted image 20230313092500.png]]
+		
 # Credits:
 
 Sagar Sutar (Mentor)
