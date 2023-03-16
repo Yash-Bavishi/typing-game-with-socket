@@ -11,6 +11,8 @@ const io = new Server(server, {
 })
 
 
+console.log('whoami')
+
 const home = require('./routes/home')
 const game = require('./routes/game')
 const data = require('./routes/data')
@@ -35,6 +37,8 @@ io.of('/chat').on('connection', (socket) => {
 
 
 let gamer = data.randomizer()
+
+
 
 function gamerer() {
 
@@ -62,7 +66,7 @@ io.of('/chat').on('connection', (socket) => {
 
 // let sad = gamerer()
 
-io.of('/game').on('connection', (socket) => {
+io.of('/game').on'connection', (socket) => {
 	console.log('socket-id', socket.id)
 	socket.on('ready', () => {
 		console.log('hola')
