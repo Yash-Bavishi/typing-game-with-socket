@@ -23,6 +23,7 @@ function Chat({ sock }) {
 	socket.on('recv', (msg2) => {
 		socket.connect()
 		console.log('message received is ', msg2)
+		console.log(socket.id)
 		setMsg([...msg, msg2])
 	})
 	const text = useRef(null)

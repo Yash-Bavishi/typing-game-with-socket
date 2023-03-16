@@ -66,15 +66,24 @@ io.of('/chat').on('connection', (socket) => {
 
 // let sad = gamerer()
 
-io.of('/game').on'connection', (socket) => {
+io.of('/game').on('connection', (socket) => {
+	const sad = gamerer()
 	console.log('socket-id', socket.id)
 	socket.on('ready', () => {
 		console.log('hola')
 		//socket.emit('setup', gamerer())
-		io.of('/game').emit('setup', gamerer())
+		io.of('/game').emit('setup', sad)
+		console.log("IDHAR ", sad)
 	})
 	socket.on('text', (msg) => {
+		console.log('oskc', socket.id)
 		socket.broadcast.emit('recv', msg)
+		console.log(msg, sad)
+		if (msg === sad) {
+			console.log(socket.id, 'Wins the game')
+			io.of('/game').to(socket.id).emit('chat', 'you won sir')
+			console.log(msg)
+		}
 	})
 })
 

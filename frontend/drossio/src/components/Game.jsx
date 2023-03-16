@@ -4,6 +4,8 @@ import { useEffect, useState } from 'react'
 import Chat from './Chat'
 import io from 'socket.io-client'
 
+	let socket = io('http://localhost:5000/game', { forceNew: false, autoConnect: true })
+
 function Game(props) {
 
 	//	 const socket = io('http://localhost:5000/game', {forceNew: false})
@@ -14,10 +16,10 @@ function Game(props) {
 	const [reSocket, setReSock] = useState(false)
 
 
-	const socket = io('http://localhost:5000/game', { forceNew: false, autoConnect: false })
 
 	useEffect(() => {
-		socket.connect()
+	//	socket = io('http://localhost:5000/game', { forceNew: false, autoConnect: false })
+		//socket.connect()
 		socket.emit('ready', setIsSock(true))
 		socket.on('setup', (msg) => {
 			setText(msg)
@@ -28,6 +30,11 @@ function Game(props) {
 		}
 	}, [setText])
 
+	useEffect(() => {
+		socket.on('chat', (msg) => {
+			console.log(msg)
+		})
+	}, [])
 
 	const reload = () => {
 		//		socket.emit('change', 'change game')
@@ -37,7 +44,7 @@ function Game(props) {
 	const location = useLocation();
 	const { state } = location
 	console.log(state)
-	
+
 	/*
 			{text ?
 				<div className="Game">
@@ -65,7 +72,7 @@ function Game(props) {
 					<center><h1>Game must come here</h1></center>
 					<Link to={`/`}>Go back from here for now pwease</Link>
 				</div>}
-			<Chat sock={{sock: socket}}/>
+			<Chat sock={{ sock: socket }} />
 			<button onClick={reload}> Reload </button>
 
 		</div>
